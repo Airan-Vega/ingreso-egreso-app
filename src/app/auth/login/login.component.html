@@ -6,14 +6,22 @@
       <div class="col-lg-4 mx-auto">
         <h2 class="text-center mb-4" style="color: white">Ingresar</h2>
         <div class="auto-form-wrapper">
-          <form action="#">
+          <form [formGroup]="loginForm" (ngSubmit)="loginUsuario()">
             <div class="form-group">
-              <label class="label">Usuario</label>
+              <label class="label">Email</label>
               <div class="input-group">
-                <input type="email" class="form-control" placeholder="Email" />
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  formControlName="correo"
+                />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <i class="fa fa-check-circle"></i>
+                    <i
+                      class="fa fa-check-circle"
+                      *ngIf="loginForm.get('correo').valid"
+                    ></i>
                   </span>
                 </div>
               </div>
@@ -25,16 +33,24 @@
                   type="password"
                   class="form-control"
                   placeholder="*********"
+                  formControlName="password"
                 />
                 <div class="input-group-append">
                   <span class="input-group-text">
-                    <i class="fa fa-check-circle"></i>
+                    <i
+                      class="fa fa-check-circle"
+                      *ngIf="loginForm.get('password').valid"
+                    ></i>
                   </span>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <button class="btn btn-primary submit-btn btn-block">
+              <button
+                type="submit"
+                class="btn btn-primary submit-btn btn-block"
+                [disabled]="loginForm.invalid"
+              >
                 Login
               </button>
             </div>

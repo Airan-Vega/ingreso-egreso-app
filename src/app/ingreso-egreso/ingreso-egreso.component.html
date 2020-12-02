@@ -5,7 +5,7 @@
         <h4 class="card-title">Agregar Ingreso / Egreso</h4>
         <p class="card-description">Especifique el monto y el tipo</p>
 
-        <form>
+        <form [formGroup]="ingresoForm" (ngSubmit)="guardar()">
           <div class="form-group">
             <label>Descripción</label>
             <input
@@ -13,6 +13,7 @@
               class="form-control"
               placeholder="Descripción"
               name="descripcion"
+              formControlName="descripcion"
             />
           </div>
 
@@ -23,6 +24,7 @@
               class="form-control"
               placeholder="Monto"
               name="monto"
+              formControlName="monto"
             />
             <p>Debe de ser un monto positivo</p>
           </div>
@@ -30,16 +32,43 @@
           <div class="form-group">
             <label>Tipo</label>
             <br />
-            <button type="button" class="btn btn-primary btn-block">
+            <button
+              type="button"
+              class="btn btn-primary btn-block"
+              (click)="tipo = 'egreso'"
+              *ngIf="tipo === 'ingreso'"
+            >
               Ingreso
             </button>
-            <!-- <button type="button" class="btn btn-warning btn-block">Egreso</button> -->
+            <button
+              type="button"
+              class="btn btn-warning btn-block"
+              (click)="tipo = 'ingreso'"
+              *ngIf="tipo === 'egreso'"
+            >
+              Egreso
+            </button>
           </div>
 
           <hr />
-          <button type="button" class="btn btn-success mr-2">
+          <button
+            type="submit"
+            class="btn btn-success mr-2"
+            [disabled]="ingresoForm.invalid"
+            *ngIf="!cargando"
+          >
             <i class="fa fa-save"></i>
+
             Agregar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success mr-2"
+            disabled="true"
+            *ngIf="cargando"
+          >
+            <i class="fa fa-spin fa-sync"></i>
+            Guardando...
           </button>
 
           <!-- 

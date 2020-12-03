@@ -42,6 +42,7 @@ export class AuthService {
           });
       } else {
         // usuario no existe
+
         if (this.userSubscription) {
           this._user = null;
           this.userSubscription.unsubscribe();

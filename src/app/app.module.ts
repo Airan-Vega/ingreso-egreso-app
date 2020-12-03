@@ -13,43 +13,20 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-// Modulos
+// Modulos Importados
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
-import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
-import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { OrdenIngresoPipe } from './pipes/orden-ingreso.pipe';
+
+// Modulos Creados
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    DashboardComponent,
-    IngresoEgresoComponent,
-    EstadisticaComponent,
-    DetalleComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    OrdenIngresoPipe,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    AuthModule,
     AppRoutingModule,
-    ReactiveFormsModule,
-    ChartsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
